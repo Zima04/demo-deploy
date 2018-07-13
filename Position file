@@ -1,0 +1,59 @@
+import { Component, Input, OnInit} from '@angular/core';
+
+@Component({
+  selector: 'anchor',
+  templateUrl: './anchor.component.html',
+  styleUrls: ['./anchor.component.scss']
+})
+export class AnchorComponent implements OnInit {
+
+  @Input() elementContainer: any;
+  
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.elementContainer.addEventListener("scroll", this.checkPositionScroll);
+    // window.addEventListener("resize", this.countPositionButton);
+    let sigma = window.innerWidth * 100 / screen.width;
+    if (window.innerWidth != screen.width) {
+      document.getElementById('anchor').style.left = `${(100 - sigma)*0.6 + this.startPositionButton}%`;
+    }
+  }
+
+  checkPositionScroll(event) {
+    if (event.target.scrollTop > 400) {
+      document.getElementById('anchor').style.display = 'block';
+    }
+    else
+      document.getElementById('anchor').style.display = 'none';
+  }
+
+  // countPositionButton(e) {
+  //   console.log(this.positionWindow);
+  //   let sigma = e.target.innerWidth * 100 / screen.width;
+  //   // if (e.target.innerWidth != screen.width) {
+  //   //   document.getElementById('anchor').style.left = `${sigma}%`;
+  //   // }
+  //   let delta = document.getElementById('anchor').style.left.substring(0, document.getElementById('anchor').style.left.length - 1);
+  //
+  //   if (e.target.innerWidth < this.positionWindow) {
+  //     console.log((100 - sigma)*0.3);
+  //     console.log((100 - sigma)*0.3 + +delta);
+  //     // let r = (screen.width - e.target.innerWidth) * 100 / screen.width;
+  //     document.getElementById('anchor').style.left = `${(100 - sigma)*0.01 + +delta}%`;
+  //     console.log(document.getElementById('anchor').style.left);
+  //   }
+  //   else {
+  //     document.getElementById('anchor').style.left = `${+delta - (100 - sigma)*0.01}%`;
+  //     console.log(document.getElementById('anchor').style.left);
+  //   }
+  //
+  //   this.positionWindow = e.target.innerWidth;
+  // }
+
+  scrollUp() {
+    this.elementContainer.scrollTo(0, 0);
+  }
+
+}
