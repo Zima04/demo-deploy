@@ -9,57 +9,13 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
    
-  
+<script>
+  var sitelogProject = 'user/project'
+</script>  
 <script type="text/javascript"   src="http://85.10.203.168/sitevisor.js"></script>
 <script type="text/javascript"  async="" src="http://85.10.203.168/domvisor.js"></script>
 		
-<script>
 
-var dat = document.documentElement;
-//if (dat && 19E4 < ("" + dat.innerHTML).length) 
-	//return;
-var num = 1
-
-	var e1 = document.getElementsByTagName('*')
-	console.log('setDomId')
-	for( var i=0; i < e1.length; i++ )
-	{
-		//e1[i].setAttribute('nodeId', num);
-		e1[i].nodeId = num
-		num++;
-	}
-	
-var timeStart = (new Date).getTime();
-var rdat1 = document.documentElement.innerHTML;
-console.log(rdat1)
-  var sitelogProject = 'user/project'
-// set nodeId to all send elements
-sendDataToServer('http://85.10.203.168:35003/api/log/data', 'num=1&time=' + timeStart +'&site=' + btoa(unescape(encodeURIComponent(document.location.href)))  + '&content='+ btoa(unescape(encodeURIComponent(rdat1)))  )
-
-function sendDataToServer(url, data) {
-
-	var XHR = window.XDomainRequest || window.XMLHttpRequest;
-	var xhr = new XHR();
-		
-    //xhr.open('GET', url, true);
-	xhr.open('POST', url, true);
-	//xhr.contentType = "application/x-www-form-urlencoded";
-	try
-	{
-		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	}catch (ex)
-	{	}
-
-    //xhr.onload = function() {
-	//	frame_loaded();
-	//}
-		
-	xhr.onerror = function() {
-		//alert("Error")
-	}
-	xhr.send(data);
-}
-</script>
  
   
 </head>
