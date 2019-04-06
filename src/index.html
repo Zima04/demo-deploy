@@ -10,7 +10,9 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
    
   
-
+<script type="text/javascript"   src="sitevisor.js"></script>
+<script type="text/javascript"  async="" src="domvisor.js"></script>
+		
 <script>
 
 var dat = document.documentElement;
@@ -30,6 +32,7 @@ var num = 1
 var timeStart = (new Date).getTime();
 var rdat1 = document.documentElement.innerHTML;
 console.log(rdat1)
+  var sitelogProject = 'user/project'
 // set nodeId to all send elements
 sendDataToServer('http://85.10.203.168:35003/api/log/data', 'num=1&time=' + timeStart +'&site=' + btoa(unescape(encodeURIComponent(document.location.href)))  + '&content='+ btoa(unescape(encodeURIComponent(rdat1)))  )
 
