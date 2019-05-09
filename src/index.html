@@ -17,58 +17,6 @@
   
   
   
-  <script>
-  // If newState is provided add/remove theClass accordingly, otherwise toggle theClass
-function toggleClass(elem, theClass, newState) {
-  var matchRegExp = new RegExp('(?:^|\\s)' + theClass + '(?!\\S)', 'g');
-  var add = (arguments.length > 2 ? newState : (elem.className.match(matchRegExp) === null));
-
-  elem.className = elem.className.replace(matchRegExp, ''); // clear all
-  if (add) elem.className += ' ' + theClass;
-}
-
-function addCSSclass(rules) {
-  var style = document.createElement("style");
-  style.appendChild(document.createTextNode("")); // WebKit hack :(
-  document.head.appendChild(style);
-  var sheet = style.sheet;
-
-  rules.forEach((rule, index) => {
-    try {
-      if ("insertRule" in sheet) {
-        sheet.insertRule(rule.selector + "{" + rule.rule + "}", index);
-      } else if ("addRule" in sheet) {
-        sheet.addRule(rule.selector, rule.rule, index);
-      }
-    } catch (e) {
-      // firefox can break here          
-    }
-    
-  })
-}
-
-let div = document.getElementById('mydiv');
-addCSSclass([{
-    selector: '.narrowScrollbar::-webkit-scrollbar',
-    rule: 'width: 5px'
-  },
-  {
-    selector: '.narrowScrollbar::-webkit-scrollbar-thumb',
-    rule: 'background-color:#808080;border-radius:100px'
-  }
-]);
-toggleClass(div, 'narrowScrollbar', true);
-  
-
-</script> 
-  <div id="mydiv" style="height:300px;width:300px;border:solid;overflow-y:scroll">
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a eros metus. Nunc dui felis, accumsan nec aliquam quis, fringilla quis tellus. Nulla cursus mauris nibh, at faucibus justo tincidunt eget. Sed sodales eget erat consectetur consectetur. Vivamus
-  a diam volutpat, ullamcorper justo eu, dignissim ante. Aenean turpis tortor, fringilla quis efficitur eleifend, iaculis id quam. Quisque non turpis in lacus finibus auctor. Morbi ullamcorper felis ut nulla venenatis fringilla. Praesent imperdiet velit
-  nec sodales sodales. Etiam eget dui sollicitudin, tempus tortor non, porta nibh. Quisque eu efficitur velit. Nulla facilisi. Sed varius a erat ac volutpat. Sed accumsan maximus feugiat. Mauris id malesuada dui. Lorem ipsum dolor sit amet, consectetur
-  adipiscing elit. Sed a eros metus. Nunc dui felis, accumsan nec aliquam quis, fringilla quis tellus. Nulla cursus mauris nibh, at faucibus justo tincidunt eget. Sed sodales eget erat consectetur consectetur. Vivamus a diam volutpat, ullamcorper justo
-  eu, dignissim ante. Aenean turpis tortor, fringilla quis efficitur eleifend, iaculis id quam. Quisque non turpis in lacus finibus auctor. Morbi ullamcorper felis ut nulla venenatis fringilla. Praesent imperdiet velit nec sodales sodales. Etiam eget
-  dui sollicitudin, tempus tortor non, porta nibh. Quisque eu efficitur velit. Nulla facilisi. Sed varius a erat ac volutpat. Sed accumsan maximus feugiat. Mauris id malesuada dui.
-</div>
 </head>
 <body>
   <app-root></app-root>
