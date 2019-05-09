@@ -12,6 +12,7 @@
 <script>
   var sitelogProject = 'user/project'
 </script>  
+  <script>
 var Mutation = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
 
 var mutationObserver = new Mutation(function(mutations) {
@@ -29,7 +30,7 @@ mutationObserver.observe(document, {
   attributeOldValue: true,
   characterDataOldValue: true
 });
-
+</script> 
 </head>
 <body>
   <app-root></app-root>
