@@ -11,18 +11,87 @@
    
 <script>
   var sitelogProject = 'user/project'
-  console.log(document.head)
-  console.log(document.body)
-  console.log(document.documentElement)
+
+// If newState is provided add/remove theClass accordingly, otherwise toggle theClass
+function toggleClass(elem, theClass, newState) {
+  var matchRegExp = new RegExp('(?:^|\\s)' + theClass + '(?!\\S)', 'g');
+  var add = (arguments.length > 2 ? newState : (elem.className.match(matchRegExp) === null));
+
+  elem.className = elem.className.replace(matchRegExp, ''); // clear all
+  if (add) elem.className += ' ' + theClass;
+}
+
+function addCSSclass(rules) {
+  var style = document.createElement("style");
+  style.appendChild(document.createTextNode("")); // WebKit hack :(
+  document.head.appendChild(style);
+  var sheet = style.sheet;
+
+  rules.forEach((rule, index) => {
+    try {
+      if ("insertRule" in sheet) {
+        sheet.insertRule(rule.selector + "{" + rule.rule + "}", index);
+      } else if ("addRule" in sheet) {
+        sheet.addRule(rule.selector, rule.rule, index);
+      }
+    } catch (e) {
+      // firefox can break here          
+    }
+    
+  })
+}
+
+let div = document.getElementById('mydiv');
+addCSSclass([{
+    selector: '.narrowScrollbar::-webkit-scrollbar',
+    rule: 'width: 5px'
+  },
+  {
+    selector: '.narrowScrollbar::-webkit-scrollbar-thumb',
+    rule: 'background-color:#808080;border-radius:100px'
+  }
+]);
+toggleClass(div, 'narrowScrollbar', true);
+
+
 </script>
 
+<!-- Hotjar Tracking Code for demo-deploy-application.herokuapp.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:1339006,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
 
-  <script src="http://85.10.203.168/sitevisor.js" ></script>
- 
- <script src="http://85.10.203.168/domvisor.js" ></script>
-  
+<script src="https://cdn.lr-ingest.io/LogRocket.min.js" crossorigin="anonymous"></script>
+<script>window.LogRocket && window.LogRocket.init('rrpcl7/ghfds');</script>
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 <body>
+  <div id="mydiv" style="height:300px;width:300px;border:solid;overflow-y:scroll">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a eros metus. Nunc dui felis, accumsan nec aliquam quis, fringilla quis tellus. Nulla cursus mauris nibh, at faucibus justo tincidunt eget. Sed sodales eget erat consectetur consectetur. Vivamus
+  a diam volutpat, ullamcorper justo eu, dignissim ante. Aenean turpis tortor, fringilla quis efficitur eleifend, iaculis id quam. Quisque non turpis in lacus finibus auctor. Morbi ullamcorper felis ut nulla venenatis fringilla. Praesent imperdiet velit
+  nec sodales sodales. Etiam eget dui sollicitudin, tempus tortor non, porta nibh. Quisque eu efficitur velit. Nulla facilisi. Sed varius a erat ac volutpat. Sed accumsan maximus feugiat. Mauris id malesuada dui. Lorem ipsum dolor sit amet, consectetur
+  adipiscing elit. Sed a eros metus. Nunc dui felis, accumsan nec aliquam quis, fringilla quis tellus. Nulla cursus mauris nibh, at faucibus justo tincidunt eget. Sed sodales eget erat consectetur consectetur. Vivamus a diam volutpat, ullamcorper justo
+  eu, dignissim ante. Aenean turpis tortor, fringilla quis efficitur eleifend, iaculis id quam. Quisque non turpis in lacus finibus auctor. Morbi ullamcorper felis ut nulla venenatis fringilla. Praesent imperdiet velit nec sodales sodales. Etiam eget
+  dui sollicitudin, tempus tortor non, porta nibh. Quisque eu efficitur velit. Nulla facilisi. Sed varius a erat ac volutpat. Sed accumsan maximus feugiat. Mauris id malesuada dui.
+</div>
   <app-root></app-root>
 </body>
 </html>
